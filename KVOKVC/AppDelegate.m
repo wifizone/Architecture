@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "PAAViewController.h"
 
 @interface AppDelegate ()
 
@@ -15,8 +16,13 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.window = [UIWindow new];
+    self.window.backgroundColor = UIColor.whiteColor;
+    PAAViewController *vc = [PAAViewController new];
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

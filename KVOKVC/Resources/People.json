@@ -1,0 +1,13 @@
+{
+    "people": [{
+            "name": "Anton",
+            "surname": "Poluianov",
+            "imageName": "anton"
+        },
+        {
+            "name": "Wasya",
+            "surname": "Ivanov",
+            "imageName": "anton"
+        }
+    ]
+}
