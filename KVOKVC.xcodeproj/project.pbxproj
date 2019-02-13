@@ -15,6 +15,7 @@
 		89B1B04B22105C2B00A1CA78 /* PAAPeopleTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B1B04A22105C2B00A1CA78 /* PAAPeopleTableViewDataSource.m */; };
 		89B1B04E22105D0100A1CA78 /* PAAPersonInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B1B04D22105D0100A1CA78 /* PAAPersonInfoCell.m */; };
 		89B1B05522107B4E00A1CA78 /* People.json in Resources */ = {isa = PBXBuildFile; fileRef = 89B1B04F22105D4B00A1CA78 /* People.json */; };
+		A6D7FE8A2214281200AEB547 /* PAAPersonViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D7FE892214281200AEB547 /* PAAPersonViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,8 @@
 		89B1B04C22105D0100A1CA78 /* PAAPersonInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PAAPersonInfoCell.h; sourceTree = "<group>"; };
 		89B1B04D22105D0100A1CA78 /* PAAPersonInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PAAPersonInfoCell.m; sourceTree = "<group>"; };
 		89B1B04F22105D4B00A1CA78 /* People.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = People.json; sourceTree = "<group>"; };
+		A6D7FE882214281200AEB547 /* PAAPersonViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PAAPersonViewModel.h; sourceTree = "<group>"; };
+		A6D7FE892214281200AEB547 /* PAAPersonViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PAAPersonViewModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,10 +77,11 @@
 		89B1B02522102F7800A1CA78 /* KVOKVC */ = {
 			isa = PBXGroup;
 			children = (
-				8951432522135075000D5954 /* Controllers */,
 				89B1B0422210588A00A1CA78 /* AppDelegate */,
+				8951432522135075000D5954 /* Controllers */,
 				89B1B0472210593400A1CA78 /* Models */,
 				89B1B044221058E400A1CA78 /* Resources */,
+				A6D7FE87221427EF00AEB547 /* ViewModels */,
 				89B1B0452210590800A1CA78 /* Views */,
 			);
 			path = KVOKVC;
@@ -121,6 +125,15 @@
 				89B1B0402210531800A1CA78 /* PAAPerson.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		A6D7FE87221427EF00AEB547 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A6D7FE882214281200AEB547 /* PAAPersonViewModel.h */,
+				A6D7FE892214281200AEB547 /* PAAPersonViewModel.m */,
+			);
+			name = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +210,7 @@
 			files = (
 				89B1B03E2210521000A1CA78 /* PAAViewController.m in Sources */,
 				89B1B03622102F7B00A1CA78 /* main.m in Sources */,
+				A6D7FE8A2214281200AEB547 /* PAAPersonViewModel.m in Sources */,
 				89B1B02822102F7800A1CA78 /* AppDelegate.m in Sources */,
 				89B1B0412210531800A1CA78 /* PAAPerson.m in Sources */,
 				89B1B04B22105C2B00A1CA78 /* PAAPeopleTableViewDataSource.m in Sources */,

@@ -10,7 +10,9 @@
 
 @interface PAAPersonInfoCell ()
 
-
+@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *surnameLabel;
+@property (nonatomic, strong) UIImageView *imageView;
 
 @end
 

@@ -10,11 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class PAAPersonViewModel;
+
 @interface PAAPersonInfoCell : UITableViewCell
 
-@property (nonatomic, strong) UILabel *nameLabel;
-@property (nonatomic, strong) UILabel *surnameLabel;
-@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) PAAPersonViewModel *personViewModel;
 
 @end
 

@@ -9,10 +9,11 @@
 #import "PAAPeopleTableViewDataSource.h"
 #import "PAAPerson.h"
 #import "PAAPersonInfoCell.h"
+#import "PAAPersonViewModel.h"
 
 @interface PAAPeopleTableViewDataSource ()
 
-@property (nonatomic, copy) NSArray *people;
+@property (nonatomic, copy) NSArray<PAAPersonViewModel *> *people;
 
 @end
 
@@ -22,13 +23,24 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithPeopleArray:(NSArray *)people
+- (instancetype)initWithPeopleArray:(NSArray<PAAPerson *> *)people
 {
     self = [super init];
     
     if (self)
     {
-        self.people = people;
+		NSMutableArray <PAAPersonViewModel *> *peopleMutableArray = [NSMutableArray new];
+		
+		for (PAAPerson *person in people)
+		{
+			PAAPersonViewModel *personViewModel = [PAAPersonViewModel new];
+			personViewModel.nameLabelText = person.name;
+			personViewModel.surnameLabelText = person.surname;
+			personViewModel.imageName = person.imageName;
+			[peopleMutableArray addObject:personViewModel];
+		}
+		
+		self.people = [peopleMutableArray copy];
     }
     
     return self;
@@ -42,10 +54,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PAAPersonInfoCell *infoCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PAAPersonInfoCell class])];
-    PAAPerson *person = self.people[indexPath.row];
-    infoCell.nameLabel.text = person.name;
-    infoCell.surnameLabel.text = person.surname;
-    infoCell.image = [UIImage imageNamed:person.imageName];
+    PAAPersonViewModel *personViewModel = self.people[indexPath.row];
+	infoCell.personViewModel = personViewModel;
+	
     return infoCell;
 }
 
