@@ -60,16 +60,6 @@
 	PAAPersonViewModel *personViewModel = self.people[indexPath.row];
 	infoCell.personViewModel = personViewModel;
 	
-	
-//	if (indexPath.row == 0)
-//	{
-//		self.viewModel = personViewModel;
-//		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//			self.viewModel.nameLabelText = @"oooo";
-//			self.viewModel.surnameLabelText = @"oooo";
-//		});
-//	}
-	
 	return infoCell;
 }
 
@@ -86,25 +76,10 @@
 	return 100;
 }
 
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	PAAPersonViewModel *personViewModel = self.people[indexPath.row];
-//	[self addObserversForViewModel:personViewModel];
-//}
-//
-//- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	PAAPersonViewModel *personViewModel = self.people[indexPath.row];
-//	[self removeObserversForViewModel:personViewModel];
-//}
-//
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	PAAPersonViewModel *personViewModel = self.people[indexPath.row];
 	personViewModel.nameLabelText = @"Wow new name";
 }
-
-
-
 
 @end

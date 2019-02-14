@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+
 NS_ASSUME_NONNULL_BEGIN
 
+
 @class PAAPersonViewModel;
+
 
 @interface PAAPersonInfoCell : UITableViewCell
 

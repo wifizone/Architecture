@@ -13,14 +13,14 @@
 static void *cellViewModelContext = &cellViewModelContext;
 static NSString *const nameLabelTextKeyPath = @"nameLabelText";
 static NSString *const surnameLabelTextKeyPath = @"surnameLabelText";
-static NSString *const imageNameKeyPath = @"imageName";
+static NSString *const imageNameKeyPath = @"personImageView";
 
 
 @interface PAAPersonInfoCell ()
 
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *surnameLabel;
-@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *personImageView;
 
 @end
 
@@ -54,7 +54,7 @@ static NSString *const imageNameKeyPath = @"imageName";
 	[self startObservingViewModel:personViewModel];
 	self.nameLabel.text = personViewModel.nameLabelText;
 	self.surnameLabel.text = personViewModel.surnameLabelText;
-	self.imageView.image = [UIImage imageNamed:personViewModel.imageName];
+	self.personImageView.image = [UIImage imageNamed:personViewModel.imageName];
 }
 
 
@@ -130,7 +130,7 @@ static NSString *const imageNameKeyPath = @"imageName";
 		{
 			NSLog(@"The name of the image was changed.");
 			NSLog(@"%@", change);
-			self.imageView.image = [UIImage imageNamed:change[@"new"]];
+			self.personImageView.image = [UIImage imageNamed:change[@"new"]];
 		}
 	}
 }
