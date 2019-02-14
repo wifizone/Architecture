@@ -7,6 +7,14 @@
 //
 
 #import "PAAPersonInfoCell.h"
+#import "PAAPersonViewModel.h"
+
+
+static void *cellViewModelContext = &cellViewModelContext;
+static NSString *const nameLabelTextKeyPath = @"nameLabelText";
+static NSString *const surnameLabelTextKeyPath = @"surnameLabelText";
+static NSString *const imageNameKeyPath = @"imageName";
+
 
 @interface PAAPersonInfoCell ()
 
@@ -41,6 +49,14 @@
     return self;
 }
 
+-(void)setPersonViewModel:(PAAPersonViewModel *)personViewModel
+{
+	[self startObservingViewModel:personViewModel];
+	self.nameLabel.text = personViewModel.nameLabelText;
+	self.surnameLabel.text = personViewModel.surnameLabelText;
+	self.imageView.image = [UIImage imageNamed:personViewModel.imageName];
+}
+
 
 #pragma mark - Setting up view
 
@@ -59,5 +75,64 @@
     [self.surnameLabel.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:-10].active = YES;
 }
 
+- (void)prepareForReuse
+{
+	[super prepareForReuse];
+	[self stopObservingViewModel:self.personViewModel];
+}
+
+
+#pragma mark - Observation
+
+- (void)startObservingViewModel:(PAAPersonViewModel *)personViewModel
+{
+	[personViewModel addObserver:self
+					  forKeyPath:nameLabelTextKeyPath
+						 options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+						 context:cellViewModelContext];
+	[personViewModel addObserver:self
+					  forKeyPath:surnameLabelTextKeyPath
+						 options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+						 context:cellViewModelContext];
+	[personViewModel addObserver:self
+					  forKeyPath:imageNameKeyPath
+						 options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+						 context:cellViewModelContext];
+}
+
+- (void)stopObservingViewModel:(PAAPersonViewModel *)personViewModel
+{
+	[personViewModel removeObserver:self
+						 forKeyPath:nameLabelTextKeyPath];
+	[personViewModel removeObserver:self
+						 forKeyPath:surnameLabelTextKeyPath];
+	[personViewModel removeObserver:self
+						 forKeyPath:imageNameKeyPath];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+	if (context == cellViewModelContext)
+	{
+		if ([keyPath isEqualToString:nameLabelTextKeyPath])
+		{
+			NSLog(@"The name of the nameLabel was changed.");
+			NSLog(@"%@", change);
+			self.nameLabel.text = change[@"new"];
+		}
+		else if ([keyPath isEqualToString:surnameLabelTextKeyPath])
+		{
+			NSLog(@"The name of the surnameLabel was changed.");
+			NSLog(@"%@", change);
+			self.surnameLabel.text = change[@"new"];
+		}
+		else if ([keyPath isEqualToString:imageNameKeyPath])
+		{
+			NSLog(@"The name of the image was changed.");
+			NSLog(@"%@", change);
+			self.imageView.image = [UIImage imageNamed:change[@"new"]];
+		}
+	}
+}
 
 @end

@@ -8,14 +8,14 @@
 
 #import "PAAViewController.h"
 #import "PAAPerson.h"
-#import "PAAPeopleTableViewDataSource.h"
+#import "PAAPeopleTableViewDataSourceDelegate.h"
 #import "PAAPersonInfoCell.h"
 
 
 @interface PAAViewController () <UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableViewWithPeople;
-@property (nonatomic, strong) PAAPeopleTableViewDataSource *dataSource;
+@property (nonatomic, strong) PAAPeopleTableViewDataSourceDelegate *dataSourceDelegate;
 
 @end
 
@@ -39,26 +39,21 @@
 - (void)configureTableView
 {
     self.tableViewWithPeople = [UITableView new];
-    self.dataSource = [[PAAPeopleTableViewDataSource alloc] initWithPeopleArray:[self parsePeopleFromFileNamed:@"People.json"]];
-    self.tableViewWithPeople.dataSource = self.dataSource;
+    self.dataSourceDelegate = [[PAAPeopleTableViewDataSourceDelegate alloc] initWithPeopleArray:[self parsePeopleFromFileNamed:@"People.json"]];
+    self.tableViewWithPeople.dataSource = self.dataSourceDelegate;
+	self.tableViewWithPeople.delegate = self.dataSourceDelegate;
     self.tableViewWithPeople.backgroundColor = UIColor.whiteColor;
     [self.tableViewWithPeople registerClass:[PAAPersonInfoCell class]
                      forCellReuseIdentifier:NSStringFromClass([PAAPersonInfoCell class])];
-    self.tableViewWithPeople.delegate = self;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 100;
 }
 
 - (void)configureConstraints
 {
-    self.tableViewWithPeople.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.tableViewWithPeople.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
-    [self.tableViewWithPeople.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
-    [self.tableViewWithPeople.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
-    [self.tableViewWithPeople.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+	self.tableViewWithPeople.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.tableViewWithPeople.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+	[self.tableViewWithPeople.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
+	[self.tableViewWithPeople.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
+	[self.tableViewWithPeople.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
 }
 
 

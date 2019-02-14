@@ -1,5 +1,5 @@
 //
-//  PAAPeopleTableViewDataSource.h
+//  PAAPeopleTableViewDataSourceDelegate.h
 //  KVOKVC
 //
 //  Created by Антон Полуянов on 10/02/2019.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PAAPeopleTableViewDataSource : NSObject <UITableViewDataSource>
+@interface PAAPeopleTableViewDataSourceDelegate : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithPeopleArray:(NSArray *)people;
